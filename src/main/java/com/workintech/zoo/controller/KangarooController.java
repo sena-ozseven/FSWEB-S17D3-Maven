@@ -29,6 +29,6 @@ public class KangarooController {
     @GetMapping("/{id}")
     public Kangaroo getKangaroos(@PathVariable("id") Integer id) {
         ZooKangarooValidation.isIdValid(id);
-        ZooKangarooValidation.checkIfExists();
+        ZooKangarooValidation.checkIfExists(kangaroos, id, true);
     }
 }
