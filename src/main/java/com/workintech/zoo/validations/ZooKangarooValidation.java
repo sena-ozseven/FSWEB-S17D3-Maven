@@ -26,4 +26,10 @@ public class ZooKangarooValidation {
         }
 
     }
+
+    public static void checkWeight(Double weight) {
+        if (weight == null || weight <= 0) {
+            throw new ZooException("Weight can't be null or less than zero", HttpStatus.BAD_REQUEST);
+        }
+    }
 }
