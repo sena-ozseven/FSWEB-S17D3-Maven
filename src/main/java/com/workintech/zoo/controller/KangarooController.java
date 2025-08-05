@@ -32,5 +32,6 @@ public class KangarooController {
     public Kangaroo getKangaroos(@PathVariable("id") Integer id) {
         ZooKangarooValidation.isIdValid(id);
         ZooKangarooValidation.checkIfExists(kangaroos, id, true);
+        return kangaroos.get(id);
     }
 }

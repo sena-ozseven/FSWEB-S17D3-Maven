@@ -15,5 +15,16 @@ public class ZooGlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ZooErrorResponse> handleException(ZooException exception) {
         ZooErrorResponse zooErrorResponse = new ZooErrorResponse(exception.getHttpStatus().value(), exception.getLocalizedMessage(),System.currentTimeMillis());
+        //Slf4j brings this object:
+        log.error("Exception occurred: ",  exception);
+        return new ResponseEntity<>(zooErrorResponse, exception.getHttpStatus());
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ZooErrorResponse> handleException(Exception exception) {
+        ZooErrorResponse zooErrorResponse = new ZooErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getLocalizedMessage(),System.currentTimeMillis());
+        //Slf4j brings this object:
+        log.error("Exception occurred: ",  exception);
+        return new ResponseEntity<>(zooErrorResponse,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

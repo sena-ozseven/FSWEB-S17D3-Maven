@@ -14,5 +14,16 @@ public class ZooKangarooValidation {
 
         }
     }
-    public static void checkIfExists(Map<Integer, Kangaroo> kangaroos, Integer id, boolean exists) {}
+    public static void checkIfExists(Map<Integer, Kangaroo> kangaroos, Integer id, boolean exists) {
+        if(exists) {
+            if(!kangaroos.containsKey(id)) {
+                throw new ZooException("record does not exists", HttpStatus.NOT_FOUND );
+            }
+        } else {
+            if(kangaroos.containsKey(id)) {
+                throw new ZooException("record already  exists", HttpStatus.BAD_REQUEST);
+            }
+        }
+
+    }
 }
