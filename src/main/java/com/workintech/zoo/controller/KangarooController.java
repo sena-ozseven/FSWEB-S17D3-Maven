@@ -17,7 +17,7 @@ public class KangarooController {
 
     @PostConstruct
     public void init() {
-        kangaroos = new HashMap<>();
+        this.kangaroos = new HashMap<>();
     }
 
     @GetMapping
